@@ -1,0 +1,38 @@
+.container {
+  text-align: center;
+}
+
+.container button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.container button {
+  background-color: transparent;
+  border: 1px solid #212121;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.good:hover {
+  background-color: rgb(81, 138, 81);
+  color: whitesmoke;
+}
+
+.neutral:hover {
+  background-color: rgb(190, 190, 102);
+  color: whitesmoke;
+}
+
+.bad:hover {
+  background-color: rgb(209, 80, 80);
+  color: whitesmoke;
+}
+
+.reset:hover {
+  background-color: lightgray;
+}
+
+button {
+  cursor: pointer;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
