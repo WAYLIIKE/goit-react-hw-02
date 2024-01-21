@@ -1,11 +1,16 @@
 import { Description } from '../Description/Description';
 import { Feedback } from '../Feedback/Feedback';
 import { Options } from '../Options/Options';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import css from './App.module.css';
 
 function App() {
-  const [feedback, setFeedback] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = window.localStorage.getItem('feedback');
+    return savedFeedback === null
+      ? { good: 0, neutral: 0, bad: 0 }
+      : JSON.parse(savedFeedback);
+  });
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
   const handleGood = () => {
@@ -23,6 +28,10 @@ function App() {
   const handleReset = () => {
     setFeedback({ good: 0, neutral: 0, bad: 0 });
   };
+
+  useEffect(() => {
+    window.localStorage.setItem('feedback', JSON.stringify(feedback));
+  }, [feedback]);
 
   return (
     <div className={css.container}>
